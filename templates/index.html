@@ -2,20 +2,23 @@
 <html>
    <body>  
     <h1>Hi I'm SIVARANJANI</h1>
+
+    
     The value is:{{data}}
+  
 
     <table border="1">
       <tr>
-        <th>value</th>
-        <th>name</th>
-        <th>date</th>
-        
+        <th>ID</th>
+        <th>Name</th>
+        <th>Values</th>
       </tr>
+      
     {% for i in data %}
       <tr>
-        <td>{{i.code}}</td>
-        <td>{{i.name}}</td>
-        <td>{{i.date}}</td>
+        <td>{{i.id}}</td>
+        <td>{{i.fund_house}}</td>
+        <td>{{i.nav}}</td>
 
       </tr>
       {%endfor%}

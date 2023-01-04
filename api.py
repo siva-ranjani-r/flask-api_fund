@@ -19,26 +19,18 @@ app = Flask(__name__)
 #     return render_template("index.html",data=resp.json().get('data')[0].get('nav'))
 
 
-# l=[148921,148920,148918,148919,149383,149384,149382,149387,148404,148406,148405,148407]
+lis=[148921,139619,149383,148404,119354,149366,149303,120413,147183,149183,150659,141223,118652,100631,150858,148980]
 l2=[]
-@app.route("/",methods=['GET'])
+@app.route("/",methods=['POST','GET'])
 def link_api():
-    url="https://portal.amfiindia.com/DownloadNAVHistoryReport_Po.aspx?frmdt=02-Jan-2023"
-    resp=requests.get(url)
-    code=requests.get("code")
-    name=requests.get("name")
-    date=requests.get("date")
-    temp={'code':code,'name':name,'date':date}
-    # print(resp.json().get('data')[0].get("nav"))
-    l2.append(temp)
-    print(l2)
-    return render_template("index.html",data=resp.json().get('code')[0].get("name")[0].get("date")[0])
-
-
-
-
-
-
+    for i in range(len(lis)):
+        url="https://api.mfapi.in/mf/"+str(lis[i])
+        resp=requests.get(url)
+        temp2=resp.json().get('meta').get('fund_house')
+        new_get=resp.json().get('data')[0].get('nav')
+        temp={'id':lis[i],'fund_house':temp2,'nav':new_get}
+        l2.append(temp)
+    return render_template("index.html",data=l2)
 
 
 
